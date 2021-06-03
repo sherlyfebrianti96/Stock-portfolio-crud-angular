@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Stock} from "../interface/stock";
+import {StockAdminService} from "./stock-admin.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class StockManagementService {
   private myStock: Array<Stock>;
   private myStockKey: string = 'my-stock';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private stockAdminService: StockAdminService) {
     this.myStock = [];
   }
 
@@ -19,7 +20,20 @@ export class StockManagementService {
   }
 
   getLivePrice() {
-    return this.http.get('https://test.solutions.vwdservices.com/internal/intake-test/sample-data/price-data?vwdkey=AALB.NL&vwdkey=ABN.NL');
+    const stockQS = this.getAllStockQS();
+    return this.http.get(`https://test.solutions.vwdservices.com/internal/intake-test/sample-data/price-data${stockQS}`);
+  }
+
+  getAllStockQS() {
+    const favoriteStock = this.stockAdminService.getList();
+    return favoriteStock.reduce((accumulator: any, stock: Stock, index: number) => {
+      let result = accumulator;
+      if (index > 0) {
+        result += '&';
+      }
+      result += `vwdkey=${stock.vwdKey}`;
+      return result;
+    }, '?');
   }
 
   syncStockList() {
