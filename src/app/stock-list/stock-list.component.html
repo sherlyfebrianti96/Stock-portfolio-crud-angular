@@ -1,5 +1,13 @@
 <div class="row">
-  <div class="col">
-    <button type="button" class="btn btn-primary">Buy Stock</button>
-  </div>
+  <div class="col" *ngIf="isAdmin; then isAdminFeature else isNotAdminFeature"></div>
+  <ng-template #isAdminFeature>
+    <button type="button" class="btn btn-primary">
+      Add Stock
+    </button>
+  </ng-template>
+  <ng-template #isNotAdminFeature>
+    <button type="button" class="btn btn-primary" >
+      Buy Stock
+    </button>
+  </ng-template>
 </div>

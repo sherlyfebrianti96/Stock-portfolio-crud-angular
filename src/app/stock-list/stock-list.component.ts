@@ -7,11 +7,10 @@ import {Router} from "@angular/router";
   styleUrls: ['./stock-list.component.scss']
 })
 export class StockListComponent implements OnInit {
-  private isAdmin: boolean;
+  public isAdmin: boolean;
 
   constructor(private router: Router) {
     this.isAdmin = (this.router.url.indexOf('admin') >= 0);
-    console.log('this.isAdmin : ', this.isAdmin);
   }
 
   ngOnInit(): void {
