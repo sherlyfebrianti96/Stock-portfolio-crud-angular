@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {StockManagementListComponent} from "./stock-management/list/list.component";
+import {StockAdminListComponent} from "./stock-admin/list/list.component";
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: 'list',
-        component: StockManagementListComponent
+        component: StockAdminListComponent
       }
     ]
   },
