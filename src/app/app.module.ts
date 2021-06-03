@@ -7,18 +7,24 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {StockManagementListComponent} from "./stock-management/list/list.component";
 import {StockAdminListComponent} from './stock-admin/list/list.component';
 import {StockAdminAddComponent} from './stock-admin/add/add.component';
+import { StockAdminComponent } from './shared/component/form/stock-admin/stock-admin.component';
+import {CommonModule} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     StockManagementListComponent,
     StockAdminListComponent,
-    StockAdminAddComponent
+    StockAdminAddComponent,
+    StockAdminComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    CommonModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
