@@ -11,8 +11,22 @@ export class StockAdminService {
 
   constructor() {
     this.stockAdminKey = 'stock-admin';
-    const stockStr = localStorage.getItem(this.stockAdminKey) || '[]';
-    this.stockList = JSON.parse(stockStr);
+    this.stockList = [];
+    this.updateStockList();
+  }
+
+  getList(keyword?: string) {
+    this.updateStockList();
+    let list = this.stockList;
+    if (keyword) {
+      list = this.stockList.filter(
+        (item: Stock) => (
+          item.name?.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()) ||
+          item.isin?.toLocaleLowerCase().includes(keyword.toLocaleLowerCase())
+        )
+      );
+    }
+    return list;
   }
 
   addNewStock(stock: Stock) {
@@ -32,5 +46,10 @@ export class StockAdminService {
 
   stockExist(stock: Stock) {
     return !!this.stockList.find((item: Stock) => (item.isin === stock.isin));
+  }
+
+  updateStockList() {
+    const stockStr = localStorage.getItem(this.stockAdminKey) || '[]';
+    this.stockList = JSON.parse(stockStr);
   }
 }

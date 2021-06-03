@@ -1,5 +1,49 @@
+<div class="row mb-4">
+  <div class="col">
+    <button type="button" class="btn btn-primary" (click)="addNewStock()">
+      Add New Stock
+    </button>
+  </div>
+</div>
+
 <h3>List of Market Stocks</h3>
 
-<button type="button" class="btn btn-primary" (click)="addNewStock()">
-  Add Stock
-</button>
+<div class="row">
+  <div class="col">
+    <form>
+      <div class="form-group form-inline">
+        Search:
+        <input class="form-control ml-2" type="text" [formControl]="keyword" (keyup)="updateList()"/>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Symbol</th>
+        <th scope="col">Shares Name</th>
+        <th scope="col">Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let stock of list; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{stock.isin}}
+        </td>
+        <td>
+          {{stock.name}}
+        </td>
+        <td>
+          {{stock.price | number}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

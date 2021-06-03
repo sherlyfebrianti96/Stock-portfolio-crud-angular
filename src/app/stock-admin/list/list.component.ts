@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {StockAdminService} from "../../shared/service/stock-admin.service";
+import {Stock} from "../../shared/interface/stock";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-list',
@@ -7,15 +10,24 @@ import {Router} from "@angular/router";
   styleUrls: ['./list.component.scss']
 })
 export class StockAdminListComponent implements OnInit {
+  list: Array<Stock>;
+  keyword: FormControl;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private stockAdminService: StockAdminService) {
+    this.list = [];
+    this.keyword = new FormControl('');
   }
 
   ngOnInit(): void {
+    this.updateList();
   }
 
   async addNewStock() {
     await this.router.navigate(['admin/add']);
+  }
+
+  updateList() {
+    this.list = this.stockAdminService.getList(this.keyword.value);
   }
 
 }

@@ -24,6 +24,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     AppRoutingModule,
     NgbModule,
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
   ],
   providers: [],

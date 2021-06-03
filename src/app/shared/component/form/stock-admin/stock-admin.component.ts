@@ -35,10 +35,7 @@ export class StockAdminComponent implements OnInit {
   submission(evt: Event) {
     evt.preventDefault();
     this.submissionTouched = true;
-    console.log('evt : ', evt);
-    console.log('this.stockAdminFormGroup.valid : ', this.stockAdminFormGroup.valid);
     if (this.stockAdminFormGroup.valid) {
-      // emit submission
       this.formSubmission.emit(this.stockAdminFormGroup.value);
     }
   }
