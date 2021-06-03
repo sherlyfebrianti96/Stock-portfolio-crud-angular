@@ -29,7 +29,6 @@
         <th scope="col">#</th>
         <th scope="col">Symbol</th>
         <th scope="col">Shares Name</th>
-        <th scope="col">Price</th>
         <th scope="col">Action</th>
       </tr>
       </thead>
@@ -37,13 +36,10 @@
       <tr *ngFor="let stock of list; index as i" class="text-center">
         <th scope="row">{{ i + 1 }}</th>
         <td>
-          {{stock.isin}}
+          {{stock.vwdKey}}
         </td>
         <td>
           {{stock.name}}
-        </td>
-        <td class="text-right">
-          {{stock.price | number}}
         </td>
         <td>
           <button type="button" class="btn btn-outline-warning cursor mr-3" (click)="updateExistingStock(stock)">
@@ -55,7 +51,7 @@
         </td>
       </tr>
       <tr *ngIf="list.length <= 0">
-        <td colspan="5">List of stock is empty.</td>
+        <td colspan="4">List of stock is empty.</td>
       </tr>
       </tbody>
     </table>

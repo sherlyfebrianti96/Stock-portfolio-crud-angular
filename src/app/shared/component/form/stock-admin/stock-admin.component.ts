@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Stock} from "../../../interface/stock";
+import {StockManagementService} from "../../../service/stock-management.service";
+import {StockAdminService} from "../../../service/stock-admin.service";
 
 @Component({
   selector: 'app-shared-form-stock-admin',
@@ -10,9 +12,7 @@ import {Stock} from "../../../interface/stock";
 export class StockAdminComponent implements OnInit {
   public stockAdminFormGroup: FormGroup;
 
-  public name: AbstractControl;
-  public isin: AbstractControl;
-  public price: AbstractControl;
+  public vwdKey: AbstractControl;
   public submissionTouched: boolean;
 
   @Input() defaultValue: Stock | null = null;
@@ -22,23 +22,17 @@ export class StockAdminComponent implements OnInit {
 
   constructor() {
     this.stockAdminFormGroup = new FormGroup({
-      name: new FormControl('', { updateOn: 'change', validators: Validators.required }),
-      isin: new FormControl('', { updateOn: 'change', validators: Validators.required }), // Stock Symbol
-      price: new FormControl('', { updateOn: 'change', validators: Validators.required }),
+      vwdKey: new FormControl('', { updateOn: 'change', validators: Validators.required }), // Stock Symbol
     });
-    this.name = this.stockAdminFormGroup.controls.name;
-    this.isin = this.stockAdminFormGroup.controls.isin;
-    this.price = this.stockAdminFormGroup.controls.price;
+    this.vwdKey = this.stockAdminFormGroup.controls.vwdKey;
     this.submissionTouched = false;
   }
 
   ngOnInit(): void {
     // Check if the form has default value
-    this.name.setValue(this.defaultValue?.name);
-    this.isin.setValue(this.defaultValue?.isin);
-    this.price.setValue(this.defaultValue?.price);
-    if (this.disabledField.includes('isin')) {
-      this.isin.disable();
+    this.vwdKey.setValue(this.defaultValue?.vwdKey);
+    if (this.disabledField.includes('vwdKey')) {
+      this.vwdKey.disable();
     }
   }
 

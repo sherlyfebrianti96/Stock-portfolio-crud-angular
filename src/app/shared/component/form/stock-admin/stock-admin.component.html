@@ -1,23 +1,9 @@
 <form (submit)="submission($event)" [formGroup]="stockAdminFormGroup">
   <div class="mb-3">
     <label for="stockSymbol" class="form-label">Symbol</label>
-    <input type="text" class="form-control" id="stockSymbol" formControlName="isin" aria-describedby="symbolHelp">
-    <div id="symbolHelp" class="form-text text-danger" *ngIf="isin.invalid && (isin.dirty || isin.touched || submissionTouched) && isin.errors">
+    <input type="text" class="form-control" id="stockSymbol" formControlName="vwdKey" aria-describedby="symbolHelp">
+    <div id="symbolHelp" class="form-text text-danger" *ngIf="vwdKey.invalid && (vwdKey.dirty || vwdKey.touched || submissionTouched) && vwdKey.errors">
       Symbol should not be empty.
-    </div>
-  </div>
-  <div class="mb-3">
-    <label for="stockSSharesName" class="form-label">Shares Name</label>
-    <input type="text" class="form-control" id="stockSSharesName" formControlName="name" aria-describedby="nameHelp">
-    <div id="nameHelp" class="form-text text-danger" *ngIf="name.invalid && (name.dirty || name.touched || submissionTouched) && name.errors">
-      Shares Name should not be empty.
-    </div>
-  </div>
-  <div class="mb-3">
-    <label for="stockSBuyPrice" class="form-label">Buy Price</label>
-    <input type="number" class="form-control" id="stockSBuyPrice" formControlName="price" aria-describedby="priceHelp">
-    <div id="priceHelp" class="form-text text-danger" *ngIf="price.invalid && (price.dirty || price.touched || submissionTouched) && price.errors">
-      Buy Price should not be empty.
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>

@@ -24,7 +24,7 @@ export class StockAdminAddComponent implements OnInit {
     this.errorMessage = '';
     const stock: Stock = value as Stock;
     try {
-      this.stockAdminService.addNewStock(stock);
+      await this.stockAdminService.addNewStock(stock.vwdKey);
       await this.router.navigate(['admin/list']);
     } catch (err: any) {
       this.errorMessage = err.message;
