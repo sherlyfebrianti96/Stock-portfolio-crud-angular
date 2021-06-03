@@ -10,6 +10,7 @@ import {StockAdminAddComponent} from './stock-admin/add/add.component';
 import { StockAdminComponent } from './shared/component/form/stock-admin/stock-admin.component';
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { SharedMessageAlertComponent } from './shared/component/message-alert/message-alert.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     StockManagementListComponent,
     StockAdminListComponent,
     StockAdminAddComponent,
-    StockAdminComponent
+    StockAdminComponent,
+    SharedMessageAlertComponent
   ],
   imports: [
     BrowserModule,

@@ -45,7 +45,7 @@ export class StockAdminService {
   }
 
   stockExist(stock: Stock) {
-    return !!this.stockList.find((item: Stock) => (item.isin === stock.isin));
+    return !!this.stockList.find((item: Stock) => (item.isin?.toLocaleLowerCase() === stock.isin?.toLocaleLowerCase()));
   }
 
   syncStockList() {

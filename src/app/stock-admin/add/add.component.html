@@ -1,10 +1,5 @@
 <h3>Add New Stock</h3>
 
-<div class="alert alert-danger d-flex align-items-center" role="alert" *ngIf="errorMessage">
-  <i class="bi bi-exclamation-triangle mr-2"></i>
-  <div>
-    {{errorMessage}}
-  </div>
-</div>
+<app-shared-message-alert *ngIf="errorMessage" [message]="errorMessage" [type]="errorType"></app-shared-message-alert>
 
 <app-shared-form-stock-admin (formSubmission)="addNewStock($event)"></app-shared-form-stock-admin>

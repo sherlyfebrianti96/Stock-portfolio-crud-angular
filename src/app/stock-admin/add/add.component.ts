@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Stock} from "../../shared/interface/stock";
 import {StockAdminService} from "../../shared/service/stock-admin.service";
 import {Router} from "@angular/router";
+import {MessageAlertType} from "../../shared/enum/message-alert-type";
 
 @Component({
   selector: 'app-add',
@@ -10,6 +11,7 @@ import {Router} from "@angular/router";
 })
 export class StockAdminAddComponent implements OnInit {
   errorMessage: string;
+  errorType: MessageAlertType = MessageAlertType.Error;
 
   constructor(private stockAdminService: StockAdminService, private router: Router) {
     this.errorMessage = '';
