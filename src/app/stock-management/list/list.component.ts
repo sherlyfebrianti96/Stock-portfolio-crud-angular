@@ -12,27 +12,24 @@ import {Subscribable} from "rxjs";
 export class StockManagementListComponent implements OnInit, OnDestroy {
   livePrice: Array<Stock>;
   myStock: Array<Stock>;
-  interval: number;
   subscribeLivePrice: any;
 
   constructor(private stockManagementService: StockManagementService) {
     this.livePrice = [];
     this.myStock = [];
-    this.interval = setInterval(() => {});
   }
 
   ngOnInit(): void {
     this.myStock = this.stockManagementService.list;
-    this.interval = setInterval(() => {
-      this.fetchLivePrice();
-    }, 1000);
+    this.fetchLivePrice();
   }
 
   fetchLivePrice() {
     this.subscribeLivePrice = this.stockManagementService.getLivePrice().subscribe((result) => {
       this.livePrice = result as Array<Stock>;
+      this.setMyStockCurrentValue();
+      this.fetchLivePrice()
     });
-    this.setMyStockCurrentValue();
   }
 
   setMyStockCurrentValue() {
@@ -70,9 +67,6 @@ export class StockManagementListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.interval) {
-      clearInterval(this.interval);
-    }
     this.subscribeLivePrice.unsubscribe();
   }
 
