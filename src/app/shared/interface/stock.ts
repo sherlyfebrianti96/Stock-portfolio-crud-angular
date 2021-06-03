@@ -11,4 +11,6 @@ export interface Stock {
   volume?: number;
   previousClose?: number;
   previousCloseTime?: string;
+  quantity?: number;
+  currentValue?: number;
 }

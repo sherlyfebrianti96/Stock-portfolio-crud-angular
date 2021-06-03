@@ -1,7 +1,95 @@
+<h3>My Stock</h3>
+
+<div class="row mb-5">
+  <div class="col">
+    <table class="table table-striped">
+      <thead>
+      <tr class="text-center">
+        <th scope="col">#</th>
+        <th scope="col">Symbol</th>
+        <th scope="col">Shares Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Buy Value</th>
+        <th scope="col">Current Value</th>
+        <th scope="col">Yield</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let stock of myStock; index as i" class="text-center">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{stock.isin}}
+        </td>
+        <td>
+          {{stock.name}}
+        </td>
+        <td class="text-right">
+          {{stock.price | number}}
+        </td>
+        <td class="text-right">
+          {{(stock.quantity || 0) | number}}
+        </td>
+        <td class="text-right">
+          {{getBuyValue(stock) | number}}
+        </td>
+        <td class="text-right">
+          {{getCurrentValue(stock) | number}}
+        </td>
+        <td class="text-right" [class.text-success]="(getYield(stock) >= 0)" [class.text-danger]="(getYield(stock) < 0)">
+          <span *ngIf="getYield(stock) > 0">+</span>{{getYield(stock) | number}}%
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-danger cursor" (click)="removeStock(stock)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="myStock.length <= 0">
+        <td colspan="9">List of stock is empty.</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>Live Stock</h3>
+
 <div class="row">
   <div class="col">
-    <button type="button" class="btn btn-primary" >
-      Buy Stock
-    </button>
+    <table class="table table-striped">
+      <thead>
+      <tr class="text-center">
+        <th scope="col">#</th>
+        <th scope="col">Symbol</th>
+        <th scope="col">Shares Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let stock of livePrice; index as i" class="text-center">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{stock.isin}}
+        </td>
+        <td>
+          {{stock.name}}
+        </td>
+        <td class="text-right">
+          {{stock.price | number}}
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-primary cursor mr-3" (click)="buyStock(stock)">
+            <i class="bi bi-cart"></i>
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="livePrice.length <= 0">
+        <td colspan="5">List of stock is empty.</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

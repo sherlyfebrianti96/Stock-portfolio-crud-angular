@@ -13,6 +13,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SharedMessageAlertComponent } from './shared/component/message-alert/message-alert.component';
 import { StockAdminUpdateComponent } from './stock-admin/update/update.component';
 import { SharedLinkBackToPageComponent } from './shared/component/link/back-to-page/back-to-page.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SharedLinkBackToPageComponent } from './shared/component/link/back-to-p
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
