@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-list',
@@ -7,10 +8,14 @@ import {Component, OnInit} from '@angular/core';
 })
 export class StockAdminListComponent implements OnInit {
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
+  }
+
+  async addNewStock() {
+    await this.router.navigate(['admin/add']);
   }
 
 }
