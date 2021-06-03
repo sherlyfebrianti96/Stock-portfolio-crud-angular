@@ -51,4 +51,8 @@ export class StockAdminListComponent implements OnInit {
     this.updateList();
   }
 
+  updateExistingStock(stock: Stock) {
+    this.router.navigate(['admin/update/' + stock.vwdKey]);
+  }
+
 }

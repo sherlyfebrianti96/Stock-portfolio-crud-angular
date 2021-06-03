@@ -48,6 +48,11 @@ export class StockAdminService {
     return !!this.stockList.find((item: Stock) => (item.isin?.toLocaleLowerCase() === stock.isin?.toLocaleLowerCase()));
   }
 
+  findStockByUuid(uuid?: String) {
+    this.syncStockList();
+    return this.stockList.find((item: Stock) => (item.vwdKey === uuid));
+  }
+
   syncStockList() {
     const stockStr = localStorage.getItem(this.stockAdminKey) || '[]';
     this.stockList = JSON.parse(stockStr);

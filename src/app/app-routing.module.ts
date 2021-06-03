@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {StockManagementListComponent} from "./stock-management/list/list.component";
 import {StockAdminListComponent} from "./stock-admin/list/list.component";
 import {StockAdminAddComponent} from "./stock-admin/add/add.component";
+import {StockAdminUpdateComponent} from "./stock-admin/update/update.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path: 'add',
         component: StockAdminAddComponent
+      },
+      {
+        path: 'update/:uuid',
+        component: StockAdminUpdateComponent
       }
     ]
   },

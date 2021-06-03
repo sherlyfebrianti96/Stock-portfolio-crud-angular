@@ -46,7 +46,7 @@
           {{stock.price | number}}
         </td>
         <td>
-          <button type="button" class="btn btn-outline-warning cursor mr-3">
+          <button type="button" class="btn btn-outline-warning cursor mr-3" (click)="updateExistingStock(stock)">
             <i class="bi bi-pencil-fill"></i>
           </button>
           <button type="button" class="btn btn-outline-danger cursor" (click)="removeStock(stock)">
