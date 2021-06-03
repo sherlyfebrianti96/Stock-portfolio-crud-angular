@@ -19,7 +19,7 @@ export class StockAdminListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.updateList();
+    this.resetPage();
   }
 
   async addNewStock() {
@@ -28,6 +28,16 @@ export class StockAdminListComponent implements OnInit {
 
   updateList() {
     this.list = this.stockAdminService.getList(this.keyword.value);
+  }
+
+  removeStock(uuid?: string) {
+    this.stockAdminService.removeStock(uuid);
+    this.resetPage();
+  }
+
+  resetPage() {
+    this.keyword.setValue('');
+    this.updateList();
   }
 
 }

@@ -12,11 +12,11 @@ export class StockAdminService {
   constructor() {
     this.stockAdminKey = 'stock-admin';
     this.stockList = [];
-    this.updateStockList();
+    this.syncStockList();
   }
 
   getList(keyword?: string) {
-    this.updateStockList();
+    this.syncStockList();
     let list = this.stockList;
     if (keyword) {
       list = this.stockList.filter(
@@ -48,8 +48,19 @@ export class StockAdminService {
     return !!this.stockList.find((item: Stock) => (item.isin === stock.isin));
   }
 
-  updateStockList() {
+  syncStockList() {
     const stockStr = localStorage.getItem(this.stockAdminKey) || '[]';
     this.stockList = JSON.parse(stockStr);
+  }
+
+  removeStock(uuid?: String) {
+    this.syncStockList();
+    const itemKey = this.stockList.findIndex((item: Stock) => (item.vwdKey === uuid));
+    if (itemKey >= 0) {
+      this.stockList.splice(itemKey, 1);
+      this.renewStockAdmin();
+    } else {
+      throw new Error('Cannot remove non-existing Stock');
+    }
   }
 }
