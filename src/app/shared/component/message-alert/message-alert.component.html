@@ -5,7 +5,8 @@
   [class.alert-success]="type === messageAlertType.Success"
   *ngIf="message"
 >
-  <i class="bi bi-exclamation-triangle mr-2"></i>
+  <i class="bi bi-exclamation-triangle mr-2" *ngIf="type === messageAlertType.Error"></i>
+  <i class="bi bi-check-circle mr-2" *ngIf="type === messageAlertType.Success"></i>
   <div>
     {{message}}
   </div>

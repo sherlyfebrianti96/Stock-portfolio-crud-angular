@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {StockAdminService} from "../../shared/service/stock-admin.service";
 import {Stock} from "../../shared/interface/stock";
 import {FormControl} from "@angular/forms";
+import {MessageAlertType} from "../../shared/enum/message-alert-type";
 
 @Component({
   selector: 'app-list',
@@ -12,10 +13,13 @@ import {FormControl} from "@angular/forms";
 export class StockAdminListComponent implements OnInit {
   list: Array<Stock>;
   keyword: FormControl;
+  message: string;
+  messageType: MessageAlertType = MessageAlertType.Success;
 
   constructor(private router: Router, private stockAdminService: StockAdminService) {
     this.list = [];
     this.keyword = new FormControl('');
+    this.message = '';
   }
 
   ngOnInit(): void {
@@ -30,8 +34,15 @@ export class StockAdminListComponent implements OnInit {
     this.list = this.stockAdminService.getList(this.keyword.value);
   }
 
-  removeStock(uuid?: string) {
-    this.stockAdminService.removeStock(uuid);
+  removeStock(stock: Stock) {
+    try {
+      this.stockAdminService.removeStock(stock.vwdKey);
+      this.messageType = MessageAlertType.Success;
+      this.message = `[${stock.isin}] ${stock.name} has been deleted`;
+    } catch (err: any) {
+      this.messageType = MessageAlertType.Error;
+      this.message = err.message;
+    }
     this.resetPage();
   }
 
