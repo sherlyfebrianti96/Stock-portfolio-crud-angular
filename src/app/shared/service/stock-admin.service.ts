@@ -68,4 +68,15 @@ export class StockAdminService {
       throw new Error('Cannot remove non-existing Stock');
     }
   }
+
+  updateExistingStock(stock: Stock) {
+    this.syncStockList();
+    const existingIndex = this.stockList.findIndex((item: Stock) => (item.vwdKey === stock.vwdKey));
+    if (existingIndex >= 0) {
+      this.stockList[existingIndex] = stock;
+      this.renewStockAdmin();
+    } else {
+      throw new Error('Stock does not exist');
+    }
+  }
 }

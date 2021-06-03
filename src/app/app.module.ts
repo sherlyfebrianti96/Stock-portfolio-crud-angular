@@ -12,6 +12,7 @@ import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SharedMessageAlertComponent } from './shared/component/message-alert/message-alert.component';
 import { StockAdminUpdateComponent } from './stock-admin/update/update.component';
+import { SharedLinkBackToPageComponent } from './shared/component/link/back-to-page/back-to-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { StockAdminUpdateComponent } from './stock-admin/update/update.component
     StockAdminAddComponent,
     StockAdminComponent,
     SharedMessageAlertComponent,
-    StockAdminUpdateComponent
+    StockAdminUpdateComponent,
+    SharedLinkBackToPageComponent
   ],
   imports: [
     BrowserModule,

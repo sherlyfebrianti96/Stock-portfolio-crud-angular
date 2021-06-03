@@ -1,5 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Stock} from "../../../interface/stock";
 
 @Component({
   selector: 'app-shared-form-stock-admin',
@@ -13,6 +14,9 @@ export class StockAdminComponent implements OnInit {
   public isin: AbstractControl;
   public price: AbstractControl;
   public submissionTouched: boolean;
+
+  @Input() defaultValue: Stock | null = null;
+  @Input() disabledField: Array<string> = [];
 
   @Output() formSubmission = new EventEmitter<string>();
 
@@ -30,6 +34,12 @@ export class StockAdminComponent implements OnInit {
 
   ngOnInit(): void {
     // Check if the form has default value
+    this.name.setValue(this.defaultValue?.name);
+    this.isin.setValue(this.defaultValue?.isin);
+    this.price.setValue(this.defaultValue?.price);
+    if (this.disabledField.includes('isin')) {
+      this.isin.disable();
+    }
   }
 
   submission(evt: Event) {
