@@ -12,7 +12,18 @@ export class StockAdminService {
   constructor(private http: HttpClient) {
     this.stockAdminKey = 'stock-admin';
     this.stockList = [];
+    this.setInitialFavoriteStock();
     this.syncStockList();
+  }
+
+  setInitialFavoriteStock() {
+    if (!localStorage.getItem(this.stockAdminKey)) {
+      this.addNewStock('AALB.NL');
+      this.addNewStock('ABN.NL');
+      this.addNewStock('ADYEN.NL');
+      this.addNewStock('AGN.NL');
+      this.addNewStock('AD.NL');
+    }
   }
 
   getList(keyword?: string) {
